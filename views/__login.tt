@@ -1,0 +1,6 @@
+<h3>admin login</h3>
+<form method='post'>
+<input type='text' id='username' name='username' /><br />
+<input type='password' id='password' name='password' /><br />
+<input type='submit' value='login' />
+</form>

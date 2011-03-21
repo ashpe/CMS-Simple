@@ -1,0 +1,73 @@
+<div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <ul class="links">
+              [% IF session.logged_in == 1 %]
+                   <li> <a href='./logout'>logout (user: [% session.username %]) </li>
+                   <li> <a href='./create_user'>create new user</a></li>
+                   [% IF session.edit_mode == 1 %]
+                      <li> <a href='./edit_mode'>save changes</a> </li>
+                   [% ELSE %]
+                      <li> <a href='./edit_mode'>edit mode</a> </li>
+                   [% END %]
+                   <li> <br /> </li>
+              [% END %]
+              <li><a href="./">home</a></li>
+              <li><a href="./about">about</a></li>
+              <li><a href="./ashley_pope_cv.pdf">resume</a></li>
+              <li><a href="./projects">projects</a></li>
+              <li><a href="http://facebook.com/ashpe">facebook</a></li>
+              <li><a href="http://twitter.com/ashleyp">twitter</a></li>
+              <li><a href="http://cpan.org/ashleyp">cpan</a></li>
+              <li><a href="http://github.com/ashpe">github</a></li>
+              <li><a href="./contact">contact</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <h3>Your application's environment</h3>
+
+            <ul>
+                <li>Location: <code>/Users/ashleypope/Sites/portfolio</code></li>
+                <li>Template engine: <code>[% settings.template %]</code></li>
+                <li>Logger: <code>[% settings.logger %]</code></li>
+                <li>Environment: <code>[% settings.environment %]</code></li>
+            </ul>
+
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="content">
+
+                    
+    <script type="text/javascript">
+    $('#about_env_link').click(function() {
+        $('#about-content').slideToggle('fast', function() {
+            // ok
+        });
+    });
+    </script>
+
+          <ul>          
+              [% FOREACH article IN content %]
+                 [% FOREACH key IN article %]
+                   [% FOREACH p IN key.value %]
+                      [% IF p != "content" %]
+                        [% IF session.edit_mode == 1 %]
+                            <div class="edit"><li><h1> [% p.heading %] </h1></div>
+                            <div class="edit_area" id="testy" name="testy"><p>[% p.text %]</p></div></li>
+                        [% ELSE %]
+                            <li><h1> [% p.heading %] </h1>
+                            <p>[% p.text %]</p></li>
+                        [% END %]
+                      [% END %]
+                   [% END %]
+               [% END %]
+             [% END %]
+          </ul>
+        </div>
+      </div>
+    </div>

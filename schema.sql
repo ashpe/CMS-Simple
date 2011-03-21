@@ -1,0 +1,1 @@
+CREATE TABLE login(username TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL);
