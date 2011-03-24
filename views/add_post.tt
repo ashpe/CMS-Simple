@@ -1,0 +1,69 @@
+<div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <ul class="links">
+              [% IF session.logged_in == 1 %]
+                   <li> <a href='./logout'>logout (user: [% session.username %]) </li>
+                   <li> <a href='./create_user'>create new user</a></li>
+                   <li> <a href='./new_post'>add new post</a></li>
+                   [% IF session.edit_mode == 1 %]
+                      <li> <a href='./edit_mode'>save changes</a> </li>
+                   [% ELSE %]
+                      <li> <a href='./edit_mode'>edit mode</a> </li>
+                   [% END %]
+                   <li> <br /> </li>
+              [% END %]
+              <li><a href="./">home</a></li>
+              <li><a href="./about">about</a></li>
+              <li><a href="./ashley_pope_cv.pdf">resume</a></li>
+              <li><a href="./projects">projects</a></li>
+              <li><a href="http://facebook.com/ashpe">facebook</a></li>
+              <li><a href="http://twitter.com/ashleyp">twitter</a></li>
+              <li><a href="http://cpan.org/ashleyp">cpan</a></li>
+              <li><a href="http://github.com/ashpe">github</a></li>
+              <li><a href="./contact">contact</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <h3>Your application's environment</h3>
+
+            <ul>
+                <li>Location: <code>/Users/ashleypope/Sites/portfolio</code></li>
+                <li>Template engine: <code>[% settings.template %]</code></li>
+                <li>Logger: <code>[% settings.logger %]</code></li>
+                <li>Environment: <code>[% settings.environment %]</code></li>
+            </ul>
+
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="content">
+
+                    
+    <script type="text/javascript">
+    $('#about_env_link').click(function() {
+        $('#about-content').slideToggle('fast', function() {
+            // ok
+        });
+    });
+    </script>
+
+          <ul>          
+                
+                <h1> add new post </h1>
+                <form method="post">
+                <label for="post_heading">heading:</label><br />
+                <input type="text" id="post_heading" name="post_heading" /><br /><br />
+                <label for="post_text">text:</label><br />
+                <textarea cols="50" rows="10" id="post_text" name="post_text" /></textarea><br /><br />
+                <input type="submit" value="add post" /><br />
+                </form>
+
+          </ul>
+        </div>
+      </div>
+    </div>
