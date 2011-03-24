@@ -6,6 +6,7 @@
               [% IF session.logged_in == 1 %]
                    <li> <a href='./logout'>logout (user: [% session.username %]) </li>
                    <li> <a href='./create_user'>create new user</a></li>
+                   <li> <a href='./add_post'>add new post</a></li>
                    [% IF session.edit_mode == 1 %]
                       <li> <a href='./edit_mode'>save changes</a> </li>
                    [% ELSE %]
@@ -52,20 +53,14 @@
     </script>
 
           <ul>          
-              [% FOREACH article IN content %]
-                 [% FOREACH key IN article %]
-                   [% FOREACH p IN key.value %]
-                      [% IF p != "content" %]
-                        [% IF session.edit_mode == 1 %]
-                            <div class="edit"><li><h1> [% p.heading %] </h1></div>
-                            <div class="edit_area" id="testy" name="testy"><p>[% p.text %]</p></div></li>
-                        [% ELSE %]
-                            <li><h1> [% p.heading %] </h1>
-                            <p>[% p.text %]</p></li>
-                        [% END %]
-                      [% END %]
-                   [% END %]
-               [% END %]
+              [% FOREACH article IN content.content.reverse %]
+                  [% IF session.edit_mode == 1 %]
+                      <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div>
+                      <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div></li>
+                  [% ELSE %]
+                      <li>[% article.fields.heading %]
+                      [% article.fields.text %]</li>
+                  [% END %]
              [% END %]
           </ul>
         </div>

@@ -1,11 +1,17 @@
 --- 
 content: 
   - 
-    heading: Tune your application
-    text: Your application is configured via a global configuration file, config.yml and an "environment" configuration file, environments/development.yml. Edit those files if you want to change the settings of your application.
+    fields: 
+      heading: <h1> Today is not Tuesday </h1>
+      text: <p> Your application is configured via a global configuration file, config.yml and an environment configuration file, environments/development.yml. Edit those files if you want to change the settings of your application. </p>
+    id: p1
   - 
-    heading: Add your own routes
-    text: The default route that displays this page can be removed, it's just here to help you get started. The template used to generate this content is located in views/index.tt. You can add some routes to lib/portfolio.pm
+    fields: 
+      heading: <h2> Add your own routes </h2>
+      text: <p> The default route that displays this page can be removed, its just here to help you get started. The template used to generate this content is located in views/index.tt. You can add some routes to lib/portfolio.pm </p>
+    id: p2
   - 
-    heading: Enjoy web development again
-    text: Once you've made your changes, restart your standalone server (bin/app.pl) and you're ready to test your web application.
+    fields: 
+      heading: <h1> Enjoy web development again </h1>
+      text: <p> I've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web application.. </p>
+    id: p3

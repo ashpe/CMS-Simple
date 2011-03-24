@@ -1,5 +1,4 @@
  $(document).ready(function() {
-
      $('.edit').editable('./save', {
          indicator : 'Saving...',
          tooltip   : 'Click to edit...'
