@@ -7,6 +7,7 @@
                    <li> <a href='./logout'>logout (user: [% session.username %]) </li>
                    <li> <a href='./create_user'>create new user</a></li>
                    <li> <a href='./add_post'>add new post</a></li>
+                   <li> <button id="add-post">Add post</button></li>
                    [% IF session.edit_mode == 1 %]
                       <li> <a href='./edit_mode'>save changes</a> </li>
                    [% ELSE %]
@@ -41,7 +42,22 @@
 
       </div>
 
-      <div id="content">
+
+ <div id="post-form" title="Create new user">
+        <p class="validateTips">All form fields are required.</p>
+
+        <form>
+        <fieldset>
+                <label for="name">heading</label>
+                <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+                <label for="text">text</label>
+                <textarea id="text" class="text ui-widget-content ui-corner-all"></textarea>
+        </fieldset>
+        <input type="submit" value="new post" />
+         <a href="./"><input type="button" name="cancel" value="Cancel" /></a>
+        </form>
+</div>
+
 
                     
     <script type="text/javascript">
@@ -52,8 +68,10 @@
     });
     </script>
 
-          <ul>          
+
               [% FOREACH article IN content.content.reverse %]
+                 <ul>
+                 <div id="content" class="ui-widget-content">
                   [% IF session.edit_mode == 1 %]
                       <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div>
                       <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div></li>
@@ -61,8 +79,8 @@
                       <li>[% article.fields.heading %]
                       [% article.fields.text %]</li>
                   [% END %]
-             [% END %]
-          </ul>
+                </div>
+                </ul>
+            [% END %]
         </div>
-      </div>
     </div>

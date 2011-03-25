@@ -8,11 +8,17 @@ font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
 font-size: 13px;
 color: #333;
 }
-
 h1 {
 font-size: 28px;
 color: #000;
 }
+
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+.ui-dialog .ui-state-error { padding: .3em; }
+div#post-form { background: white; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
 
 a  {color: #03c}
 a:hover {
