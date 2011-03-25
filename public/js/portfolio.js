@@ -10,10 +10,19 @@
                         height: 300,
                         width: 350,
                         modal: true,
+                        buttons: {
+                                  Cancel: function() {
+                                        $( this ).dialog( "close" );
+                                 },
+                        close: function() {
+                                allFields.val( "" ).removeClass( "ui-state-error" );
+                        }
+
+                        }
      });
 
 
-     $( ".ui-widget-content" ).draggable();
+     $( ".ui-widget-content[foo='bar']" ).draggable();
 
      $('.edit').editable('./save', {
          indicator : 'Saving...',

@@ -54,7 +54,6 @@
                 <textarea id="text" class="text ui-widget-content ui-corner-all"></textarea>
         </fieldset>
         <input type="submit" value="new post" />
-         <a href="./"><input type="button" name="cancel" value="Cancel" /></a>
         </form>
 </div>
 
@@ -71,7 +70,7 @@
 
               [% FOREACH article IN content.content.reverse %]
                  <ul>
-                 <div id="content" class="ui-widget-content">
+                 <div id="content" foo="bar" class="draggable ui-widget-content">
                   [% IF session.edit_mode == 1 %]
                       <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div>
                       <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div></li>
