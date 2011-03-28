@@ -3,7 +3,8 @@ content:
   - 
     fields: 
       date: '1350.20110328'
-      heading: <h1> Today is bit like Tuesday </h1>
+      heading: <h1> Today is almost Tuesday </h1>
+      last_edited: '1734.20110328'
       posted_by: ashpe
       text: <p> Your application is configured via a global configuration file, config.yml and an environment configuration file, environments/development.yml. Edit those files if you want to change the settings of your application. </p>
     id: p1
@@ -18,7 +19,7 @@ content:
     fields: 
       date: '1350.20110328'
       heading: <h1> Enjoy web development again </h1>
-      last_edited: '1719.20110328'
+      last_edited: '1736.20110328'
       posted_by: ashpe
       text: <p> haha've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web application.. </p>
     id: p3

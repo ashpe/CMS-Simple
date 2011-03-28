@@ -54,7 +54,7 @@
                      [% IF session.edit_mode == 1 %]
                           <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div>
                           <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div>
-                          <i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
+                          <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
                            <i> (lasted edited on [% article.fields.last_edited %]) </i></h5>
                           [% END %]
