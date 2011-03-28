@@ -30,7 +30,7 @@ get '/add_post' => sub {
 };
 
 post '/add_post' => sub {
-    my $add_post = $content->add_post(params->{'post_heading'}, params->{'post_text'});
+    my $add_post = $content->add_post(params->{'post_heading'}, params->{'post_text'}, session('username'));
     if ($add_post) {
        redirect '/';
     } else {

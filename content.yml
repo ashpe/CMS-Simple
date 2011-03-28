@@ -2,16 +2,22 @@
 content: 
   - 
     fields: 
+      date: 12/12/1990
       heading: <h1> Today is bit like Tuesday </h1>
+      posted_by: ashpe
       text: <p> Your application is configured via a global configuration file, config.yml and an environment configuration file, environments/development.yml. Edit those files if you want to change the settings of your application. </p>
     id: p1
   - 
     fields: 
+      date: 12/12/1999
       heading: <h1> Add your own routes </h1>
+      posted_by: ashpe
       text: <p> The default route that displays this page can be removed, its just here to help you get started. The template used to generate this content is located in views/index.tt. You can add some routes to lib/portfolio.pm </p>
     id: p2
   - 
     fields: 
+      date: 15/12/2033
       heading: <h1> Enjoy web development again </h1>
+      posted_by: ashpe
       text: <p> haha've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web application.. </p>
     id: p3

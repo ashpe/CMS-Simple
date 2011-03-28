@@ -5,6 +5,7 @@ use Moose;
 use autodie;
 use YAML::Syck;
 use Carp qw( croak );
+use Time::Format qw(%time %strftime %manip);
 use Data::Dumper;
 
 has 'filename', is => 'rw', isa => 'Str';
@@ -29,7 +30,7 @@ sub get_content {
 
 # Add new post to main content
 sub add_post {
-    my ($self, $heading, $text) = @_;
+    my ($self, $heading, $text, $posted_by) = @_;
     my $all_content = $self->get_content();
     my $total_posts = scalar @{$all_content->{content}};
     my $next_id = "p" . ($total_posts+1);
@@ -45,6 +46,8 @@ sub add_post {
     $all_content->{content}[$total_posts]{id} = $next_id;
     $all_content->{content}[$total_posts]{fields}{heading} = $heading;
     $all_content->{content}[$total_posts]{fields}{text} = $text;
+    $all_content->{content}[$total_posts]{fields}{posted_by} = $posted_by;
+    $all_content->{content}[$total_posts]{fields}{date} = $time{'hhmm.yyyymmdd'};
 
     DumpFile($self->filename, $all_content);
     

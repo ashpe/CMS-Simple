@@ -7,7 +7,6 @@
                    <li> <a href='./logout'>logout (user: [% session.username %]) </li>
                    <li> <a href='./create_user'>create new user</a></li>
                    <li> <a href='./add_post'>add new post</a></li>
-                   <li> <button id="add-post">Add post</button></li>
                    [% IF session.edit_mode == 1 %]
                       <li> <a href='./edit_mode'>save changes</a> </li>
                    [% ELSE %]
@@ -41,23 +40,6 @@
         </ul>
 
       </div>
-
-
- <div id="post-form" title="Create new user">
-        <p class="validateTips">All form fields are required.</p>
-
-        <form>
-        <fieldset>
-                <label for="name">heading</label>
-                <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
-                <label for="text">text</label>
-                <textarea id="text" class="text ui-widget-content ui-corner-all"></textarea>
-        </fieldset>
-        <input type="submit" value="new post" />
-        </form>
-</div>
-
-
                     
     <script type="text/javascript">
     $('#about_env_link').click(function() {
@@ -68,18 +50,20 @@
     </script>
 
 
-              [% FOREACH article IN content.content.reverse %]
                  <ul>
-                 <div id="content" foo="bar" class="draggable ui-widget-content">
+                 <div id="content">
+              [% FOREACH article IN content.content.reverse %]
                   [% IF session.edit_mode == 1 %]
                       <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div>
-                      <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div></li>
+                      <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div>
+                      <i>Posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i></li>
                   [% ELSE %]
                       <li>[% article.fields.heading %]
-                      [% article.fields.text %]</li>
+                      [% article.fields.text %]
+                      <i>Posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i></li>
                   [% END %]
-                </div>
-                </ul>
             [% END %]
+                </div>
+             </ul>
         </div>
     </div>
