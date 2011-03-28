@@ -6,6 +6,7 @@ use Dancer::Plugin::Database;
 use Data::Dumper;
 use YAML::Syck;
 use CGI;
+use Time::Format qw(%time);
 
 our $CONTENT_FILE = 'content.yml';
 our $VERSION = '0.1';
@@ -23,6 +24,19 @@ get '/' => sub {
     my $data = LoadFile($CONTENT_FILE);
     $content->load_content($CONTENT_FILE);
     template 'index', {'content' => reverse($data)};
+};
+
+post '/' => sub {
+
+    my $data = LoadFile($CONTENT_FILE);
+    my $id = params->{'getid'};
+    my $real_id = substr $id, 1, length($id);
+    $real_id--;
+  
+    delete $data->{'content'}[$real_id];
+    
+    DumpFile($CONTENT_FILE, $data);
+    redirect '/';
 };
 
 get '/add_post' => sub {
@@ -54,6 +68,7 @@ post '/save' => sub {
 
   $page_id--;
   $data->{"content"}[$page_id]{"fields"}{$type} = params->{"value"};
+  $data->{"content"}[$page_id]{"fields"}{last_edited} = $time{'hhmm.yyyymmdd'};
   DumpFile($CONTENT_FILE, $data);
   return params->{'value'};
 };
