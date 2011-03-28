@@ -18,6 +18,7 @@ content:
     fields: 
       date: '1350.20110328'
       heading: <h1> Enjoy web development again </h1>
+      last_edited: '1719.20110328'
       posted_by: ashpe
       text: <p> haha've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web application.. </p>
     id: p3

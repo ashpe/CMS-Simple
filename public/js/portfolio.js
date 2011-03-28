@@ -25,15 +25,22 @@
      $( ".ui-widget-content[foo='bar']" ).draggable();
 
      $('.edit').editable('./save', {
-         indicator : 'Saving...',
-         tooltip   : 'Click to edit...'
+         type      : 'text',
+         event     : 'dblclick',
+         cancel    : 'cancel',
+         submit    : 'submit',
+         indicator : 'saving...',
+         tooltip   : 'click to edit...',
+         style     : 'inherit'
      });
      $('.edit_area').editable('./save', { 
          type      : 'textarea',
-         cancel    : 'Cancel',
-         submit    : 'OK',
-         indicator : 'Saving...',
-         tooltip   : 'Click to edit...'
+         cancel    : 'cancel',
+         event     : 'dblclick',
+         submit    : 'submit',
+         indicator : 'saving...',
+         tooltip   : 'click to edit...',
+         style     : 'inherit'
      });
  });
 
