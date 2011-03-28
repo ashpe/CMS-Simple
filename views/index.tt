@@ -1,6 +1,7 @@
 <div id="page">
       <div id="sidebar">
         <ul id="sidebar-items">
+          <li><h4>menu</h4></li>
           <li>
             <ul class="links">
               [% IF session.logged_in == 1 %]
@@ -25,18 +26,6 @@
               <li><a href="./contact">contact</a></li>
             </ul>
           </li>
-          
-          <li>
-            <h3>Your application's environment</h3>
-
-            <ul>
-                <li>Location: <code>/Users/ashleypope/Sites/portfolio</code></li>
-                <li>Template engine: <code>[% settings.template %]</code></li>
-                <li>Logger: <code>[% settings.logger %]</code></li>
-                <li>Environment: <code>[% settings.environment %]</code></li>
-            </ul>
-
-          </li>
         </ul>
 
       </div>
@@ -58,7 +47,7 @@
                      [% IF session.logged_in == 1 %]
                          <form method="post">
                          <input type="hidden" name="getid" id="getid" value="[% article.id %]" />
-                         <input type="image" src="images/close_button.gif" style="margin-left:450px;"/>
+                         <input type="image" id="align" src="images/close_button.gif" style="margin-left:450px;"/>
                          </form>
                      [% END %]
 
@@ -67,14 +56,14 @@
                           <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div>
                           <i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
-                            <i> (lasted edited on [% article.fields.last_edited %]) </i>
+                           <i> (lasted edited on [% article.fields.last_edited %]) </i></h5>
                           [% END %]
                       [% ELSE %]
                           <li>[% article.fields.heading %]
                           [% article.fields.text %]
-                          <i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
+                          <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
-                            <i> (lasted edited on [% article.fields.last_edited %]) </i>
+                            <i> (lasted edited on [% article.fields.last_edited %])</i>
                           [% END %]
                       [% END %]
 
