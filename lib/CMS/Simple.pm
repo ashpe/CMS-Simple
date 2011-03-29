@@ -10,6 +10,7 @@ use Data::Dumper;
 
 has 'filename', is => 'rw', isa => 'Str';
 
+
 # Load file with all content and store it.
 sub load_content {
     my ($self, $file_name) = @_;

@@ -23,6 +23,7 @@ sub connect_db {
 get '/' => sub {
     my $data = LoadFile($CONTENT_FILE);
     $content->load_content($CONTENT_FILE);
+    
     template 'index', {'content' => reverse($data)};
 };
 
@@ -69,8 +70,33 @@ post '/save' => sub {
   $page_id--;
   $data->{"content"}[$page_id]{"fields"}{$type} = params->{"value"};
   $data->{"content"}[$page_id]{"fields"}{last_edited} = $time{'hhmm.yyyymmdd'};
-  DumpFile($CONTENT_FILE, $data);
-  return params->{'value'};
+  
+  my $db = connect_db();
+  
+  my $sql = 'select last_modified from data_check where filename=?';
+  my $sth = $db->prepare($sql) or die $db->errstr;
+  $sth->execute($CONTENT_FILE);
+  my $sql_last_modified = $sth->fetch;
+
+  if ($sql_last_modified->[0] ne session('last_modified')) {
+    
+      session last_modified => $sql_last_modified->[0]; 
+      return '<p class="error">Error: somebody else has edited this content while you were editing try again, page will refresh in 3s..</p>';
+      sleep 3;
+      redirect '/';
+
+  } elsif ($sql_last_modified->[0] eq session('last_modified')) {
+
+      my $sql = "update data_check SET last_modified=?, username=?  where filename=?";
+      my $sth = $db->prepare($sql) or die $db->errstr;
+      
+      my $modified = $time{'hhmmss.yyyymmdd'};
+      $sth->execute($modified, session('username'), $CONTENT_FILE);
+      session last_modified => $modified;
+
+      DumpFile($CONTENT_FILE, $data);
+      return params->{'value'};
+  }
 };
 
 get '/edit_mode' => sub {
@@ -80,6 +106,14 @@ get '/edit_mode' => sub {
       redirect '/';
     } else {
       session edit_mode => 1;
+
+      my $db = connect_db();
+      my $sql = 'select last_modified from data_check where filename=?';
+      my $sth = $db->prepare($sql) or die $db->errstr;
+      $sth->execute($CONTENT_FILE);
+      my $sql_last_modified = $sth->fetch;
+      session last_modified => $sql_last_modified->[0];
+     
       redirect '/';
     }
   }
@@ -105,6 +139,8 @@ post '/__login' => sub {
      } else {
          session logged_in => 1;
          session username => params->{'username'};
+                  
+
          
          redirect '/';
      }
