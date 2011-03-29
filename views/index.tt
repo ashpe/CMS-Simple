@@ -2,12 +2,7 @@
 
       <div id="sidebar">
         <ul id="sidebar-items">
-          <h4>nav</h4>
-          <li>
-            <ul class="links">
               [% PROCESS links.tt %]
-            </ul>
-            </li>
             <h4>tags</h4>
             <ul>
               [% PROCESS tags.tt %]
@@ -49,7 +44,8 @@
                           [% article.fields.text %]
                           <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
-                            <i> (lasted edited on [% article.fields.last_edited %])</i>
+                            <i> (lasted edited on [% article.fields.last_edited %]) <a href="#" class="comments" id="[% article.id %]" >view comments</a></i>
+                            <div id="view_comments[% article.id %]"></div>
                           [% END %]
                       [% END %]
 

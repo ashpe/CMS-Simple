@@ -1,5 +1,21 @@
  $(document).ready(function() {
 
+$(".comments").click(function()
+{
+var ID = $(this).attr("id");
+
+$.ajax({
+    type: "POST",
+    url: "./view_comments",
+    data: "msg_id="+ ID,
+    cache: false,
+    success: function(html) {
+        $("div#view_comments"+ID).prepend(html);
+    }
+    });
+return false;
+});
+
 
      $( "#add-post" ).button().click(function() {
          $( "#post-form" ).dialog( "open" );

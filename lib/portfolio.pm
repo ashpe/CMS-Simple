@@ -133,6 +133,22 @@ get '/edit_mode' => sub {
     }
   }
 };
+post '/view_comments' => sub {
+   my $data = LoadFile($CONTENT_FILE);
+   
+   my $id = params->{'msg_id'};
+   my $real_id = substr $id, 1, length($id);
+   $real_id--;
+    
+   my $get_all_comments = $data->{"content"}[$real_id]{"fields"}{comments};
+   my $return_value;
+   foreach (@$get_all_comments) {
+      $return_value = $return_value  . " $_->{comment_text} - posted by $_->{comment_by} ";
+   }
+   print "Hello";
+   #print $return_value;
+    
+};
 
 get '/__login' => sub {
     template '__login';

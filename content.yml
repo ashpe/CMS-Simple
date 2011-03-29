@@ -16,6 +16,13 @@ content:
     id: p2
   - 
     fields: 
+      comments:
+         - 
+            comment_by: smithy
+            comment_text: that makes no sense!
+         -
+            comment_by: john
+            comment_text: I am posting a post
       date: '1350.20110328'
       heading: <h1> Enjoy web development again </h1>
       last_edited: '1444.20110329'
