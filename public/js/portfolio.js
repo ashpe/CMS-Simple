@@ -1,24 +1,25 @@
  $(document).ready(function() {
   var blah = [];
 
-  $("#comments_nav").hide();
+  $("div[id^='comments_nav']").each(function() {
+    $(this).hide();
+    });
  
   $(".hide_comments").click(function()
     {
       var ID = $(this).attr("id");
       $("div#view_comments"+ID).hide();
-      $("#comments_nav").hide();
-      $(".comments").show();
+      $("#comments_nav"+ID).hide();
+      $(".comments[id=" + ID + "]").show();
     });
 
   $(".comments").click(function()
   {
   var ID = $(this).attr("id");
-  
   if (blah[ID] == true) {
       $("div#view_comments"+ID).show();
-      $(".comments").hide();
-      $("#comments_nav").show();
+      $(this).hide();
+      $("#comments_nav"+ID).show();
   } else {
   $.ajax({
       type: "POST",
@@ -26,11 +27,11 @@
       data: "msg_id="+ ID,
       cache: false,
       success: function(html) {
-         // alert(html);
           blah[ID] = true;
+       
           $("div#view_comments"+ID).prepend(html);
-          $(".comments").hide();
-          $("#comments_nav").show();
+          $(".comments[id=" + ID + "]").hide();
+          $("#comments_nav"+ID).show();
       }
       });
   return false;
