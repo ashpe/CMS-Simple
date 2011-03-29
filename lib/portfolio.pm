@@ -143,9 +143,10 @@ post '/view_comments' => sub {
    my $get_all_comments = $data->{"content"}[$real_id]{"fields"}{comments};
    my $return_value;
    foreach (@$get_all_comments) {
-      $return_value = $return_value  . " $_->{comment_text} - posted by $_->{comment_by} ";
+      $return_value = $return_value  . " <p>$_->{comment_text} - posted by $_->{comment_by}</p>";
    }
-   print "Hello";
+   
+   return $return_value;
    #print $return_value;
     
 };

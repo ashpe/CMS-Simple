@@ -45,7 +45,7 @@
                           <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
                             <i> (lasted edited on [% article.fields.last_edited %]) <a href="#" class="comments" id="[% article.id %]" >view comments</a></i>
-                            <div id="view_comments[% article.id %]"></div>
+                            <div id="view_comments[% article.id %]"><div id="comments_nav"><a href="#" class="hide_comments" id="[% article.id %]">hide comments</a> - <a href="#" class="add_comment">add comment</a></div></div>
                           [% END %]
                       [% END %]
 
