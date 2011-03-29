@@ -9,7 +9,7 @@
                    <li> <a href='./create_user'>create new user</a></li>
                    <li> <a href='./add_post'>add new post</a></li>
                    [% IF session.edit_mode == 1 %]
-                      <li> <a href='./edit_mode'>edit mode off</a> </li>
+                      <li> <a href='./edit_mode'>save changes</a> </li>
                    [% ELSE %]
                       <li> <a href='./edit_mode'>edit mode</a> </li>
                    [% END %]

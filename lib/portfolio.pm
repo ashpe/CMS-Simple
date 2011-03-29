@@ -7,16 +7,18 @@ use Data::Dumper;
 use YAML::Syck;
 use CGI;
 use Time::Format qw(%time);
+use File::Flock;
+use Try::Tiny;
+use autodie;
 
+our $DATABASE_FILE = 'webdata';
 our $CONTENT_FILE = 'content.yml';
 our $VERSION = '0.1';
 
 my $content = CMS::Simple->new(); 
 
 sub connect_db {
-    my $dbh = DBI->connect("dbi:SQLite:dbname=webdata") or
-       die $DBI::errstr;
-
+    my $dbh = DBI->connect("dbi:SQLite:dbname=webdata", {AutoCommit => 0});
     return $dbh;
 }
 
@@ -71,31 +73,41 @@ post '/save' => sub {
   $data->{"content"}[$page_id]{"fields"}{$type} = params->{"value"};
   $data->{"content"}[$page_id]{"fields"}{last_edited} = $time{'hhmm.yyyymmdd'};
   
-  my $db = connect_db();
-  
-  my $sql = 'select last_modified from data_check where filename=?';
-  my $sth = $db->prepare($sql) or die $db->errstr;
-  $sth->execute($CONTENT_FILE);
-  my $sql_last_modified = $sth->fetch;
+  try {
+    lock($CONTENT_FILE);
+   
 
-  if ($sql_last_modified->[0] ne session('last_modified')) {
+    my $db = connect_db(); 
+    $db->begin_work();
+    my $sql = 'select last_modified from data_check where filename=?';
+    my $sth = $db->prepare($sql);
+    $sth->execute($CONTENT_FILE);
+    my $sql_last_modified = $sth->fetch;
+    $db->commit();
+
+    if ($sql_last_modified->[0] ne session('last_modified')) {
+        
+        session last_modified => $sql_last_modified->[0]; 
+        return "<p class='error'>Error: somebody else has edited this content while you were editing try again, click <a href='./'>here</a> to try again..</p>";
+
+      } elsif ($sql_last_modified->[0] eq session('last_modified')) {
+        
+        $db->begin_work();  
+        my $sql = "update data_check SET last_modified=?, username=?  where filename=?";
+        my $sth = $db->prepare($sql);
+          
+        my $modified = $time{'hhmmss.yyyymmdd'};
+        $sth->execute($modified, session('username'), $CONTENT_FILE);
+        session last_modified => $modified;
     
-      session last_modified => $sql_last_modified->[0]; 
-      return '<p class="error">Error: somebody else has edited this content while you were editing try again, page will refresh in 3s..</p>';
-      sleep 3;
-      redirect '/';
-
-  } elsif ($sql_last_modified->[0] eq session('last_modified')) {
-
-      my $sql = "update data_check SET last_modified=?, username=?  where filename=?";
-      my $sth = $db->prepare($sql) or die $db->errstr;
-      
-      my $modified = $time{'hhmmss.yyyymmdd'};
-      $sth->execute($modified, session('username'), $CONTENT_FILE);
-      session last_modified => $modified;
-
-      DumpFile($CONTENT_FILE, $data);
-      return params->{'value'};
+        DumpFile($CONTENT_FILE, $data);
+        $db->commit();
+        return params->{'value'};
+    } catch {
+        warn $_;
+    }
+  } finally {
+      unlock($CONTENT_FILE);
   }
 };
 
@@ -108,12 +120,15 @@ get '/edit_mode' => sub {
       session edit_mode => 1;
 
       my $db = connect_db();
+      $db->begin_work();
       my $sql = 'select last_modified from data_check where filename=?';
-      my $sth = $db->prepare($sql) or die $db->errstr;
+      my $sth = $db->prepare($sql);
       $sth->execute($CONTENT_FILE);
       my $sql_last_modified = $sth->fetch;
+      $db->commit();
+
       session last_modified => $sql_last_modified->[0];
-     
+         
       redirect '/';
     }
   }
@@ -131,7 +146,7 @@ get '/logout' => sub {
 post '/__login' => sub {
     my $db = connect_db();
     my $sql = "select * from login where username=? AND password=?";
-    my $sth = $db->prepare($sql) or die $db->errstr;
+    my $sth = $db->prepare($sql);
     $sth->execute(params->{'username'}, params->{'password'});
     my $user = $sth->fetch;
     if (!$user) {
