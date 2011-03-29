@@ -8,14 +8,6 @@ charset: "UTF-8"
 
 template_toolkit: TT
 
-plugin:
-   Database:
-      driver: 'SQLite'
-      database: 'webdata'
-      host: 'localhost'
-      username: ""
-      password: ""
-      connection_check_threshold: 10
 
 template: "template_toolkit"
 engines:
@@ -25,3 +17,12 @@ engines:
       end_tag:   '%]'
 
 
+
+plugin:
+   Database:
+      driver: 'SQLite'
+      database: 'webdata'
+      host: 'localhost'
+      username: ''
+      password: ''
+      connection_check_threshold: 10

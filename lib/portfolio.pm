@@ -145,17 +145,17 @@ get '/logout' => sub {
 
 post '/__login' => sub {
     my $db = connect_db();
+    $db->begin_work();
     my $sql = "select * from login where username=? AND password=?";
     my $sth = $db->prepare($sql);
     $sth->execute(params->{'username'}, params->{'password'});
     my $user = $sth->fetch;
+    $db->commit();
     if (!$user) {
          template '__login';
      } else {
          session logged_in => 1;
          session username => params->{'username'};
-                  
-
          
          redirect '/';
      }
