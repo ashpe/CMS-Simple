@@ -42,14 +42,10 @@ post '/' => sub {
     redirect '/';
 };
 
-get '/add_post' => sub {
-    template 'add_post';
-};
-
 post '/add_post' => sub {
     my $add_post = $content->add_post(params->{'post_heading'}, params->{'post_text'}, session('username'));
     if ($add_post) {
-       redirect '/';
+        redirect '/';
     } else {
         'error';
     }

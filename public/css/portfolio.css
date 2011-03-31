@@ -11,6 +11,47 @@ body {
     color: red;
     font-weight: bold;
 }
+input.btn { 
+    color:#000; 
+    font: bold 84% 'trebuchet ms',helvetica,sans-serif; 
+    background-color:#bd7ed4; 
+    border:1px solid; 
+    border-color: #696 #363 #363 #696;
+    margin-left: 62px;
+    width: 372px;
+}
+#layer1 label {
+    font-size: 16px;
+}
+#layer1 {
+        position: absolute;
+        left:200px;
+        top:100px;
+        width:450px;
+        background-color:#ddd;
+        border: 1px solid #000;
+        z-index: 50;
+}
+#layer1_handle {
+        background-color:#bd7ed4;
+        padding:2px;
+        text-align:center;
+        font-weight:bold;
+        color: #000;
+        vertical-align:middle;
+}
+#layer1_handle a {
+    color: #000;
+    text-decoration:none;
+}
+#layer1_content {
+        padding:5px;
+}
+#close {
+        float:right;
+        text-decoration:none;
+        color:#FFFFFF;
+}
 h1 {
     font-size: 22px;
     color: #000;
@@ -31,6 +72,8 @@ input {
 }
 textarea {
     padding: 5px;
+    font-family: 'Helvetica','Helvetica Neue','Arial','Century Gothic';
+    font-size: 13px;
 }
 #page {
     background-color: #ddd;

@@ -1,6 +1,32 @@
  $(document).ready(function() {
   var blah = [];
 
+            
+    $('#layer1').Draggable(
+                    {
+                            zIndex: 	20,
+                            ghosting:	false,
+                            opacity: 	0.7,
+                            handle:	'#layer1_handle'
+                    }
+            );	
+
+    $("#layer1").hide();
+                            
+    $('#preferences').click(function()
+    {
+            $("#layer1").show();
+    });
+    $('.btn').click(function() 
+    {
+        $("#layer1").hide();
+    });
+
+    $('#close').click(function()
+    {
+            $("#layer1").hide();
+    });
+          
   $("div[id^='comments_nav']").each(function() {
     $(this).hide();
     });

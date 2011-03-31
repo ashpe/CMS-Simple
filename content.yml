@@ -2,13 +2,28 @@
 content: 
   - 
     fields: 
+      comments: 
+        - 
+          comment_by: johny
+          comment_text: pass post pass
+        - 
+          comment_by: smith
+          comment_text: Posting posts ups my post count
       date: '1350.20110328'
-      heading: <h1> Today is bit like Tuesday </h1>
+      heading: <h1> Today is not Tuesday </h1>
+      last_edited: '1147.20110330'
       posted_by: ashpe
       text: <p> Your application is configured via a global configuration file, config.yml and an environment configuration file, environments/development.yml. Edit those files if you want to change the settings of your application. </p>
     id: p1
   - 
     fields: 
+      comments: 
+        - 
+          comment_by: Random John
+          comment_text: Thats so random
+        - 
+          comment_by: Smith Random
+          comment_text: Lies
       date: '1350.20110328'
       heading: <h1> Add your own routes </h1>
       posted_by: ashpe
@@ -16,16 +31,16 @@ content:
     id: p2
   - 
     fields: 
-      comments:
-         - 
-            comment_by: smithy
-            comment_text: that makes no sense!
-         -
-            comment_by: john
-            comment_text: I am posting a post
+      comments: 
+        - 
+          comment_by: smithy
+          comment_text: that makes no sense!
+        - 
+          comment_by: john
+          comment_text: I am posting a post
       date: '1350.20110328'
       heading: <h1> Enjoy web development again </h1>
-      last_edited: '1444.20110329'
+      last_edited: '1001.20110330'
       posted_by: ashpe
-      text: <p>  Nopesss I've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web application... </p>
+      text: <p>  Nopesss I've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web applications... </p>
     id: p3

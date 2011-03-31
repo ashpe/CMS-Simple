@@ -11,13 +11,22 @@
         </ul>
       </div>
                     
-    <script type="text/javascript">
-    $('#about_env_link').click(function() {
-        $('#about-content').slideToggle('fast', function() {
-            // ok
-        });
-    });
-    </script>
+            
+	<div id="layer1">
+		<div id="layer1_handle">			
+			<a href="#" id="close">[ x ]</a>
+			Add a new post
+		</div>
+		<div id="layer1_content">
+			<form id="layer1_form" method="post" action="./add_post">
+				<label for="post_heading">heading:</label>
+                                <input type="text" id="post_heading" size="50" name="post_heading" /><br /><br />
+				<label for="post_text">&nbsp; &nbsp; &nbsp; text:&nbsp;</label>
+                                <textarea id="post_text" cols="50" rows="8" name="post_text"></textarea><br /><br />	
+				<input type="submit" name="submit" value="Add post" class="btn" />
+			</form>
+		</div>
+	</div>
 
                  <ul>
                  <div id="content">
