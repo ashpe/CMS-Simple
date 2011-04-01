@@ -61,6 +61,7 @@
                       [% ELSE %]
                           <li><a href="./article/article_id?article=[% article.id %]">[% article.fields.heading %]</a>
                           [% article.fields.text %]
+                          <a href="./article/article_id?article=[% article.id %]"> more..</a><br />
                           <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
                             <i> (lasted edited on [% article.fields.last_edited %])</i>
