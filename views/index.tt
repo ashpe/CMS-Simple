@@ -35,7 +35,7 @@
                  [% IF article.fields.posted_by %]
                                 
                      [% IF session.logged_in == 1 %]
-                         <input type="image" id="align" src="images/edit_button.gif" style="margin-left:430px;"/>
+                         <input type="image" id="align" src="images/edit_button.gif" onclick="$('#heading_[% article.id %]').trigger('dblclick')" style="margin-left:430px;"/>
                          <form method="post">
                          <input type="hidden" name="getid" id="getid" value="[% article.id %]" />
                          <input type="image" id="align" src="images/close_button.png" style="margin-left:450px;"/>
@@ -43,8 +43,9 @@
                      [% END %]
 
                      [% IF session.logged_in == 1 && session.user_level > 1 %]
-                          <li><a href="./article/article_id?article=[% article.id %]"><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div></a>
+                          <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div></a>
                           <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div>
+                          <a href="./article/article_id?article=[% article.id %]"> more..</a><br />
                           <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
                            <i> (lasted edited on [% article.fields.last_edited %]) </i></h5>
