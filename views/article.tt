@@ -1,0 +1,35 @@
+<div id="page">
+
+      <div id="sidebar">
+        <ul id="sidebar-items">
+              [% PROCESS links.tt %]
+            <h4>tags</h4>
+            <ul>
+              [% PROCESS tags.tt %]
+            </ul>
+          </li>
+        </ul>
+      </div>
+                    
+                 <ul>
+                 <div id="content">
+                   
+                    [% article.fields.heading %]
+                    [% article.fields.text %]
+                     
+                    <h2> Comments </h2> 
+
+                    <textarea rows="1" cols="60"></textarea><br />
+                    <button>Add comment</button><br /><hr /><br />
+
+                    [% FOREACH comment IN article.fields.comments %]
+                        [% comment.comment_text %] - posted by: <b>[% comment.comment_by %]</b><br /><br />
+                    [% END %]
+
+                </ul>
+           </div>
+       </div>
+    </div>
+
+
+

@@ -18,11 +18,11 @@
 			Add a new post
 		</div>
 		<div id="layer1_content">
-			<form id="layer1_form" method="post" action="./add_post">
-				<label for="post_heading">heading:</label>
-                                <input type="text" id="post_heading" size="50" name="post_heading" /><br /><br />
-				<label for="post_text">&nbsp; &nbsp; &nbsp; text:&nbsp;</label>
-                                <textarea id="post_text" cols="50" rows="8" name="post_text"></textarea><br /><br />	
+			<form id="layer1_form" method="post" action="./add_post" class="floated_labels">
+				<p><label for="post_heading">heading:</label>
+                                <input type="text" id="post_heading" size="50" name="post_heading" /></p>
+				<p><label for="post_text">text:</label>
+                                <textarea id="post_text" cols="50" rows="8" name="post_text"></textarea></p>
 				<input type="submit" name="submit" value="Add post" class="btn" />
 			</form>
 		</div>
@@ -35,31 +35,43 @@
                  [% IF article.fields.posted_by %]
                                 
                      [% IF session.logged_in == 1 %]
+                         <input type="image" id="align" src="images/edit_button.gif" style="margin-left:430px;"/>
                          <form method="post">
                          <input type="hidden" name="getid" id="getid" value="[% article.id %]" />
-                         <input type="image" id="align" src="images/close_button.gif" style="margin-left:450px;"/>
+                         <input type="image" id="align" src="images/close_button.png" style="margin-left:450px;"/>
                          </form>
                      [% END %]
 
-                     [% IF session.edit_mode == 1 %]
-                          <li><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div>
+                     [% IF session.logged_in == 1 && session.user_level > 1 %]
+                          <li><a href="./article/article_id?article=[% article.id %]"><div class="edit" id="heading_[% article.id %]">[% article.fields.heading %]</div></a>
                           <div class="edit_area" id="text_[% article.id %]">[% article.fields.text %]</div>
                           <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
                            <i> (lasted edited on [% article.fields.last_edited %]) </i></h5>
                           [% END %]
                           <a href="#" class="comments" id="[% article.id %]" >view comments</a></i>
-                          <div id="view_comments"><div id="comments_nav[% article.id %]"><a href="#" class="hide_comments" id="[% article.id %]">hide comments</a> - <a href="#" class="add_comment">add comment</a></div></div>
+                          <div id="view_comments[% article.id %]">
+                          <div id="comments_nav[% article.id %]">
+                          <a href="#" class="hide_comments" id="[% article.id %]">hide comments</a>
+                          [% IF session.logged_in == 1 %] - <a href="#" class="add_comment">add comment</a> [% END %]
+                          </div>
+                          </div>
 
                       [% ELSE %]
-                          <li>[% article.fields.heading %]
+                          <li><a href="./article/article_id?article=[% article.id %]">[% article.fields.heading %]</a>
                           [% article.fields.text %]
                           <hr /><i>posted by [% article.fields.posted_by %] @ [% article.fields.date %]</i>
                           [% IF article.fields.last_edited %]
                             <i> (lasted edited on [% article.fields.last_edited %])</i>
                           [% END %]
                           <a href="#" class="comments" id="[% article.id %]" >view comments</a></i>
-                          <div id="view_comments[% article.id %]"><div id="comments_nav[% article.id %]"><a href="#" class="hide_comments" id="[% article.id %]">hide comments</a> - <a href="#" class="add_comment">add comment</a></div></div>
+                          <div id="view_comments[% article.id %]">
+                          <div id="comments_nav[% article.id %]">
+                          <textarea name="new_comment" cols="60" rows="1"></textarea><br />
+                          <a href="#" class="hide_comments" id="[% article.id %]">hide comments</a> 
+                          [% IF session.logged_in == 1 %] - <a href="#" class="add_comment">add comment</a> [% END %]
+                          </div>
+                          </div>
 
                       [% END %]
 

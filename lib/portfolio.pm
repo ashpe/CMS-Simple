@@ -129,6 +129,19 @@ get '/edit_mode' => sub {
     }
   }
 };
+get '/article/*' => sub {
+    my $article_id = params->{'article'};
+    my $data = LoadFile($CONTENT_FILE);
+    my $real_id = substr $article_id, 1, length($article_id);
+    $real_id--;
+    
+    if ($data->{"content"}[$real_id]) {
+        template 'article', {'article' => $data->{"content"}[$real_id] };
+    } else {
+        template 'error', {'error' => "No such article" };
+    } 
+};
+
 post '/view_comments' => sub {
    my $data = LoadFile($CONTENT_FILE);
    
@@ -167,9 +180,11 @@ post '/__login' => sub {
     if (!$user) {
          template '__login';
      } else {
+         my $user_level_col = 1;
+
          session logged_in => 1;
          session username => params->{'username'};
-         
+         session user_level => $user->[$user_level_col]; 
          redirect '/';
      }
 };

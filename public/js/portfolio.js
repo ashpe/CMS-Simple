@@ -54,7 +54,6 @@
       cache: false,
       success: function(html) {
           blah[ID] = true;
-       
           $("div#view_comments"+ID).prepend(html);
           $(".comments[id=" + ID + "]").hide();
           $("#comments_nav"+ID).show();

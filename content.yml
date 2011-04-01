@@ -11,9 +11,9 @@ content:
           comment_text: Posting posts ups my post count
       date: '1350.20110328'
       heading: <h1> Today is not Tuesday </h1>
-      last_edited: '1147.20110330'
+      last_edited: '1502.20110401'
       posted_by: ashpe
-      text: <p> Your application is configured via a global configuration file, config.yml and an environment configuration file, environments/development.yml. Edit those files if you want to change the settings of your application. </p>
+      text: "<p> Your application is configured via a global configuration file, config.yml and an environment configuration file, environments/development.yml. Edit those files if you want to change the settings of your application. </p> "
     id: p1
   - 
     fields: 
@@ -29,18 +29,3 @@ content:
       posted_by: ashpe
       text: <p> The default route that displays this page can be removed, its just here to help you get started. The template used to generate this content is located in views/index.tt. You can add some routes to lib/portfolio.pm </p>
     id: p2
-  - 
-    fields: 
-      comments: 
-        - 
-          comment_by: smithy
-          comment_text: that makes no sense!
-        - 
-          comment_by: john
-          comment_text: I am posting a post
-      date: '1350.20110328'
-      heading: <h1> Enjoy web development again </h1>
-      last_edited: '1001.20110330'
-      posted_by: ashpe
-      text: <p>  Nopesss I've made my changes, restart your standalone server (bin/app.pl) and youre ready to test your web applications... </p>
-    id: p3

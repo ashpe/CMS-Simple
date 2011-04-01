@@ -7,6 +7,13 @@ body {
     font-size: 13px;
     color: #333;
 }
+.floated_labels label {
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: right;
+    width: 4em;
+}
 .error {
     color: red;
     font-weight: bold;

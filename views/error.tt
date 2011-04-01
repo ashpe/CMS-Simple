@@ -1,0 +1,25 @@
+<div id="page">
+
+      <div id="sidebar">
+        <ul id="sidebar-items">
+              [% PROCESS links.tt %]
+            <h4>tags</h4>
+            <ul>
+              [% PROCESS tags.tt %]
+            </ul>
+          </li>
+        </ul>
+      </div>
+                    
+                 <ul>
+                 <div id="content">
+                   
+                    <h2 style="color: red;"> [% error %] </h2> 
+
+                </ul>
+           </div>
+       </div>
+    </div>
+
+
+
