@@ -1,10 +1,10 @@
 [% IF session.logged_in == 1 %]
    <h4>admin</h4>
    <ul class="links">
-   <li> <a href='./logout'>logout (user: [% session.username %]) </li>
+   <li> <a href='../logout'>logout (user: [% session.username %]) </li>
    <li> <a href='#'>preferences</a></li>
    [% IF session.user_level > 1 %]
-   <li> <a href='./create_user'>create new user</a></li>
+   <li> <a href='../create_user'>create new user</a></li>
    <li> <a href='#' id='preferences'>add new post</a></li>
    [% END %]
    </ul>
